@@ -5,7 +5,6 @@ const defaultLocale = "en";
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-
   // Đã có locale thì bỏ qua
   if (locales.some((l) => pathname.startsWith(`/${l}`))) {
     return;

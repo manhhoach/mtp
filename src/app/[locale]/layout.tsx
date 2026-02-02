@@ -3,6 +3,8 @@ import { Bebas_Neue, Roboto } from 'next/font/google'
 import "./../globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { NextIntlClientProvider } from 'next-intl';
+
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,11 +35,13 @@ export default function RootLayout({
       className={`${roboto.variable} ${bebas.variable}`}
     >
       <body className="antialiased font-roboto">
-        <Header />
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <NextIntlClientProvider>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
