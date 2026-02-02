@@ -1,5 +1,8 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "Artist": "Artist",
+    "News":"News",
+    "Gallery":"Gallery",
+    "About":"About us"
   }
 }

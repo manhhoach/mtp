@@ -4,7 +4,7 @@ import { Globe } from "lucide-react"
 import { useLocale } from "next-intl"
 import { Link, usePathname } from "@/i18n/navigation"
 import { useParams } from "next/navigation"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 
 
 
@@ -17,7 +17,7 @@ export default function LanguageSwitch() {
    const ref = useRef<HTMLDivElement>(null)
    const locale = useLocale()
    const pathname = usePathname()
- 
+
    const params = useParams<{ slug: string }>()
    const slug = params.slug
 
@@ -25,6 +25,22 @@ export default function LanguageSwitch() {
       value: typeof pathname
    ): value is "/news/[slug]" =>
       value === "/news/[slug]"
+
+   useEffect(() => {
+      function handleClickOutside(e: MouseEvent) {
+         if (ref.current && !ref.current.contains(e.target as Node)) {
+            setOpen(false)
+         }
+      }
+
+      if (open) {
+         document.addEventListener("mousedown", handleClickOutside)
+      }
+
+      return () => {
+         document.removeEventListener("mousedown", handleClickOutside)
+      }
+   }, [open])
 
 
    return <div className="relative " ref={ref}>

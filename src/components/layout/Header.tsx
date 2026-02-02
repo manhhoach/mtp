@@ -1,23 +1,26 @@
 import Image from "next/image";
 import LanguageSwitch from "../common/LanguageSwitch";
+import { useTranslations } from 'next-intl';
+
 
 export default function Header() {
-   return <header className="flex h-20 px-80 mx-auto font-bebas items-center text-(--main-color)">
-      <div className="h-full w-3/5 flex items-center justify-between text-xl">
+   const t = useTranslations("HomePage")
+   return <header className="flex h-20 px-80 mx-auto justify-between items-center text-(--main-color) uppercase font-semibold text-base">
+      <div className="h-full w-3/5 flex items-center justify-between ">
          <div className="h-full relative w-24">
             <Image alt='' src={'/images/logo.png'} fill className="h-full w-auto" />
          </div>
          <div>
-            Artist
+            {t('Artist')}
          </div>
          <div>
-            News
+            {t('News')}
          </div>
          <div>
-            Gallery
+            {t('Gallery')}
          </div>
          <div>
-            About
+            {t('About')}
          </div>
       </div>
       <div>
